@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JobsList should render 1`] = `
+<section
+  className="Jobs"
+>
+  <div
+    className="no-jobsList"
+  >
+    No jobsList found
+  </div>
+</section>
+`;

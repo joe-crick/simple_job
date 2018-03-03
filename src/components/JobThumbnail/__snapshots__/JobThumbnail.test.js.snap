@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Job should render 1`] = `
+<div
+  className="JobThumbnail undefined"
+>
+  <div
+    className="JobThumbnail-logo"
+  >
+    <img
+      alt={undefined}
+      src={undefined}
+    />
+  </div>
+  <div
+    className="JobThumbnail-details"
+  >
+    <div
+      className="JobThumbnail-price"
+    >
+      Price: €
+    </div>
+    <div
+      className="JobThumbnail-title"
+    />
+    <div
+      className="JobThumbnail-desc"
+    />
+    <button
+      className="JobThumbnail-button"
+      data-id={undefined}
+      onClick={undefined}
+    >
+      Buy
+    </button>
+  </div>
+</div>
+`;
