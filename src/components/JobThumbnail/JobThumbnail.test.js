@@ -9,9 +9,9 @@ describe("Job", () => {
     let header = component.toJSON();
     expect(header).toMatchSnapshot();
   });
-  it("should run a function when the buy button is clicked.", () => {
+  it("should run a function when the view details button is clicked.", () => {
     const noop = jest.fn();
-    const component = mount(<JobThumbnail buyNow={noop} />);
+    const component = mount(<JobThumbnail viewJobDetails={noop} />);
     component.find(".JobThumbnail-button").simulate("click");
     expect(noop).toHaveBeenCalled();
   });

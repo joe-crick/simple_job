@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchJobs } from "./data/fetch-jobs";
 import JobList from "./components/JobsList/JobsList";
-import { getJobsList, setJobsList } from "./components/JobsList/jobs-list-actions";
+import { getJobsList } from "./components/JobsList/jobs-list-actions";
 import "./App.css";
 
 const PAGE_SIZE = 25;
@@ -27,26 +26,10 @@ export const isIntersection = entries => entries[0].intersectionRatio > 0;
 
 class App extends Component {
   state = {
-    jobsList: [],
-    visibleJobs: [],
     jobSetBegin: 0
   };
 
-  // This solution assumes that the data being returned is a manageable size,
-  // and that it will be more efficient to receive all the data from one request
-  // and paginate through that data, than making individual requests for sets of data.
-  // componentDidMount = async () => {
-  //   const jobList = await fetchJobs(215);
-  //
-  //   this.setState({
-  //     jobsList: jobList,
-  //     visibleJobs: getJobPage(jobList, 0)
-  //   });
-  // };
-
-  componentDidMount() {
-    this.props.getMatchingJobListings()
-  }
+  componentDidMount = () => this.props.getMatchingJobListings(25);
 
   // This is not an ideal implementation of infinite scrolling. Ideally, the
   // content should be updated through the scroll view, while not increasing
@@ -55,18 +38,17 @@ class App extends Component {
   // mobile users.
   paginateJobs = entries => {
     if (isIntersection(entries)) {
-      const updateBegin = this.state.jobSetBegin + PAGE_SIZE;
-      this.setState(state => ({
-        jobSetBegin: updateBegin,
-        visibleJobs: getJobPage(state.jobsList, updateBegin)
-      }));
+      this.setState(state => ({ jobSetBegin: state.jobSetBegin + PAGE_SIZE }));
     }
   };
 
   render() {
     return (
       <div className="App">
-        <JobList paginateJobs={this.paginateJobs} jobs={this.state.visibleJobs} />
+        <JobList
+          paginateJobs={this.paginateJobs}
+          jobs={getJobPage(this.props.jobsList, this.state.jobSetBegin)}
+        />
       </div>
     );
   }
