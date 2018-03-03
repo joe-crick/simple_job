@@ -1,5 +1,7 @@
 # Simple Jobs
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/joe-crick/simple_job.svg)](https://greenkeeper.io/)
+
 ## Requirements
 
 * Display a list of available jobs.
