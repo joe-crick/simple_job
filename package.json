@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "compression": "^1.7.2",
+    "express": "^4.16.2",
     "faker": "^4.1.0",
     "lodash": "^4.17.5",
+    "morgan": "^1.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
@@ -13,16 +16,19 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "hawk": "^7.0.7",
-    "prettier": "^1.11.1",
-    "react-scripts": "1.1.1",
-    "@storybook/react": "^3.3.14",
     "@storybook/addon-actions": "^3.3.14",
     "@storybook/addon-links": "^3.3.14",
     "@storybook/addons": "^3.3.14",
-    "babel-core": "^6.26.0"
+    "@storybook/react": "^3.3.14",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react-app": "^3.1.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "hawk": "^7.0.7",
+    "ignore-styles": "^5.0.1",
+    "prettier": "^1.11.1",
+    "react-scripts": "1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

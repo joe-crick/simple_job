@@ -18,11 +18,13 @@ exports[`Job should render 1`] = `
     <div
       className="JobThumbnail-price"
     >
-      Price: €
+      Company: 
     </div>
     <div
       className="JobThumbnail-title"
-    />
+    >
+      Date Posted: 
+    </div>
     <div
       className="JobThumbnail-desc"
     />
@@ -31,7 +33,7 @@ exports[`Job should render 1`] = `
       data-id={undefined}
       onClick={undefined}
     >
-      Buy
+      View Details
     </button>
   </div>
 </div>

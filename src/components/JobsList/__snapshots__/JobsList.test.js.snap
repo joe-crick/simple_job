@@ -5,9 +5,9 @@ exports[`JobsList should render 1`] = `
   className="Jobs"
 >
   <div
-    className="no-jobsList"
+    className="no-jobs"
   >
-    No jobsList found
+    No jobs found
   </div>
 </section>
 `;

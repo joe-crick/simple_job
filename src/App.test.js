@@ -14,11 +14,9 @@ describe("App", () => {
   it("should increment the number of visible jobsList if an intersection point has been crossed", () => {
     const expected = 50;
     const intersectionEntries = [{ intersectionRatio: 0.5 }];
-    const jobs = jobData(75); // greater than expected
     const component = mount(<App />);
-    component.setState({jobs: jobsList});
     component.instance().paginateJobs(intersectionEntries);
-    const actual = component.state("visibleJobs").length;
+    const actual = component.state("jobSetBegin");
     expect(actual).toEqual(expected);
   });
 });

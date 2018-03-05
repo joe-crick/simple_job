@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import JobThumbnail from "../JobThumbnail/JobThumbnail";
 
 const BOTTOM_THRESHOLD = 5;
-const doc = document;
 
 /**
  * @description Given a starting number returns a class name
@@ -41,7 +40,7 @@ export class JobList extends Component {
   // observing the sentinel after the contents of the JobThumbnail List have rendered.
   componentDidUpdate = () => {
     const { observer } = this.state;
-    const sentinel = doc.querySelector(".sentinel");
+    const sentinel = document.querySelector(".sentinel");
     if (sentinel) observer.observe(sentinel);
   };
 

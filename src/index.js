@@ -8,21 +8,26 @@ import rootStore from "./stores/store";
 import "./index.css";
 import App from "./App";
 
-const Main = () => (
-  <BrowserRouter>
-    <Provider store={rootStore}>
-      <div>
-        <ErrorBoundary>
-          <div>
-            <Switch>
-              <Route path={"/"} component={App} />
-              <Route component={PageNotFound} />
-            </Switch>
-          </div>
-        </ErrorBoundary>
-      </div>
-    </Provider>
-  </BrowserRouter>
+export const Main = () => (
+  <Provider store={rootStore}>
+    <div>
+      <ErrorBoundary>
+        <div>
+          <Switch>
+            <Route path={"/"} component={App} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </div>
+      </ErrorBoundary>
+    </div>
+  </Provider>
 );
 
-render(<Main />, document.getElementById("root"));
+if (typeof window !== "undefined") {
+  render(
+    <BrowserRouter>
+      <Main />
+    </BrowserRouter>,
+    document.getElementById("root")
+  );
+}
