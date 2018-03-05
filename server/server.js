@@ -1,44 +1,34 @@
-import express from "express";
-import morgan from "morgan";
-import React from "react";
-import ReactDOMServer from "react-dom/server";
-import { StaticRouter } from "react-router-dom";
-import template from "lodash/template";
-import fs from "fs";
-import { Main } from "../src/index";
-import path from "path";
-import compression from "compression";
+import Zone from 'can-zone';
+import express from 'express';
+import path from 'path';
+import dom from 'can-zone-jsdom';
+import requests from 'done-ssr/zones/requests';
 
-const PORT = 8080;
-const baseTemplate = fs.readFileSync(
-  path.join(__dirname, "../public/index.html")
-);
-const siteTemplate = template(baseTemplate);
+const app = express(); 
 
-const server = express();
+const PORT = process.env.PORT || 3000;
 
-server.use(compression());
-server.use(morgan("combined"));
+app.use(express.static('build', { index: false }));
+app.use(express.static('.'));
 
-server.use("/public", express.static(path.join(__dirname, "public")));
+app.get('*', async (request, response) => {
+  var zone = new Zone([
+    // Overrides XHR, fetch
+    requests(request),
 
-server.use((req, res) => {
-  console.log("url:", req.url);
-  const context = {};
-  const body = ReactDOMServer.renderToString(
-    React.createElement(
-      StaticRouter,
-      { location: req.url, context },
-      React.createElement(Main)
-    )
-  );
-  if (context.url) {
-    res.redirect(context.url);
-  }
+    // Sets up a DOM
+    dom(request, {
+      root: __dirname + '/../build',
+      html: 'index.html'
+    })
+  ]);
 
-  res.write(siteTemplate({ body }));
-  res.end();
+  const { html } = await zone.run();
+  response.end(html);
 });
 
-console.log("Listening on Port:", PORT);
-server.listen(PORT);
+require('http')
+  .createServer(app)
+  .listen(PORT);
+
+console.error(`Server running at http://localhost:${PORT}`);

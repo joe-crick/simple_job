@@ -9,25 +9,20 @@ import "./index.css";
 import App from "./App";
 
 export const Main = () => (
-  <Provider store={rootStore}>
-    <div>
-      <ErrorBoundary>
-        <div>
-          <Switch>
-            <Route path={"/"} component={App} />
-            <Route component={PageNotFound} />
-          </Switch>
-        </div>
-      </ErrorBoundary>
-    </div>
-  </Provider>
+  <BrowserRouter>
+    <Provider store={rootStore}>
+      <div>
+        <ErrorBoundary>
+          <div>
+            <Switch>
+              <Route path={"/"} component={App} />
+              <Route component={PageNotFound} />
+            </Switch>
+          </div>
+        </ErrorBoundary>
+      </div>
+    </Provider>
+  </BrowserRouter>
 );
 
-if (typeof window !== "undefined") {
-  render(
-    <BrowserRouter>
-      <Main />
-    </BrowserRouter>,
-    document.getElementById("root")
-  );
-}
+render(<Main />, document.getElementById("root"));
