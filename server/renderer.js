@@ -6,26 +6,17 @@ import StaticRouter from "react-router-dom/StaticRouter";
 import { Provider } from "react-redux";
 import fs from "fs";
 import path from "path";
-import { JSDOM as jsdom } from "jsdom";
 import rootStore from "../src/stores/store";
 import appConfig from "../src/app.config";
 import defaultState from "../src/state/state";
 
 const context = {};
 const filePath = path.resolve(__dirname, "..", "build", "index.html");
-const dom = new jsdom(fs.readFileSync(filePath, "utf8"));
-const doc = dom.window.document;
-const dataIsland = doc.createElement("script");
-dataIsland.id = "initial-data";
-dataIsland.setAttribute("type", "text/plain");
+const template = fs.readFileSync(filePath, "utf8");
 
 export default (req, res) => {
   defaultState.jobsList = jobData(appConfig.defaultCount);
-  dataIsland.setAttribute("data-json", JSON.stringify(initialData));
-  doc.body.appendChild(dataIsland);
-  doc.querySelector("title").textContent = "Hey Jobs: You're running real now, buddy.";
-
-  doc.querySelector("#root").innerHTML = renderToString(
+  const appHtml = renderToString(
     <Provider store={rootStore(defaultState)}>
       <StaticRouter location={req.url} context={context}>
         <Main />
@@ -33,5 +24,11 @@ export default (req, res) => {
     </Provider>
   );
 
-  return res.send(dom.serialize());
+  return context.url
+    ? res.redirect(301, context.url)
+    : res.send(
+        template
+          .replace("{{SSR}}", appHtml)
+          .replace("{{json}}", JSON.stringify(defaultState.jobsList))
+      );
 };

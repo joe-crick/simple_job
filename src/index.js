@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { Provider } from "react-redux";
 import rootStore from "./stores/store";
-import "./index.css";
 import App from "./App";
+import "./App.css";
 
 const Main = () => (
   <div>
@@ -20,8 +20,10 @@ const Main = () => (
 );
 
 if (typeof window !== "undefined") {
+  const initialData = JSON.parse(document.getElementById("initial-data").getAttribute("data-json"));
+
   hydrate(
-    <Provider store={rootStore()}>
+    <Provider store={rootStore(initialData)}>
       <BrowserRouter>
         <Main />
       </BrowserRouter>

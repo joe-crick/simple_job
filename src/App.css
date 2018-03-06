@@ -1,3 +1,18 @@
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+
 /* variables */
 @media all and (min-width: 480px) {
   .Jobs {
@@ -40,7 +55,7 @@
 }
 
 .JobThumbnail {
-  width: 400px; 
+  width: 400px;
   margin-top: 10px;
   flex-direction: row;
   display: flex;

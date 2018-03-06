@@ -20,12 +20,120 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>HeyJobs: React Assessment Task</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+
+      /* variables */
+      @media all and (min-width: 480px) {
+        .Jobs {
+          --job-container-width: inherit;
+        }
+      }
+
+      @media all and (min-width: 760px) {
+        .Jobs {
+          --job-container-width: 810px;
+        }
+      }
+
+      /* styles */
+
+      .App {
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        width:100%;
+      }
+
+      .App-logo {
+        height: 40px;
+      }
+
+      .App-header {
+        text-align: center;
+        width:100%;
+        padding: 10px 0 6px 0;
+        color: white;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .Jobs {
+        width: var(--job-container-width);
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .JobThumbnail {
+        width: 400px;
+        margin-top: 10px;
+        flex-direction: row;
+        display: flex;
+      }
+
+      .JobThumbnail-logo {
+        width:50%;
+        display: flex;
+      }
+
+      .JobThumbnail-logo img {
+        width: 190px;
+        height: 220px;
+      }
+
+      .JobThumbnail-details {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        padding: 8px 0 0 8px;
+        justify-content: space-between;
+      }
+
+      .JobThumbnail-price {
+        font-size: 20px;
+      }
+
+      .JobThumbnail-title {
+      }
+
+      .JobThumbnail-desc {
+        color: #c4c4c4;
+        font-size: 14px;
+      }
+      .JobThumbnail-button {
+        background: #199DAA;
+        font-size: 16px;
+        border: 0;
+        color: #fff;
+        padding: 8px;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .JobThumbnail-button:hover {
+        background: #1AD6E8;
+      }
+    </style>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="root"></div>
+    <div id="root">{{SSR}}</div>
+    <script id="initial-data" type="application/json/json" data-json={{json}}></script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
