@@ -4,7 +4,7 @@ import jobPostingReducers from "../components/JobsList/jobs-list-reducers";
 const REDUX_INIT = "@@redux/INIT";
 
 const actions = {
-  [REDUX_INIT]: (state, action) => state,
+  [REDUX_INIT]: state => state,
   ...jobPostingReducers
 };
 

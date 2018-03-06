@@ -9,6 +9,7 @@ import path from "path";
 import { JSDOM as jsdom } from "jsdom";
 import rootStore from "../src/stores/store";
 import appConfig from "../src/app.config";
+import defaultState from "../src/state/state";
 
 const context = {};
 const filePath = path.resolve(__dirname, "..", "build", "index.html");
@@ -19,13 +20,13 @@ dataIsland.id = "initial-data";
 dataIsland.setAttribute("type", "text/plain");
 
 export default (req, res) => {
-  const initialData = jobData(appConfig.defaultCount);
+  defaultState.jobsList = jobData(appConfig.defaultCount);
   dataIsland.setAttribute("data-json", JSON.stringify(initialData));
   doc.body.appendChild(dataIsland);
   doc.querySelector("title").textContent = "Hey Jobs: You're running real now, buddy.";
 
   doc.querySelector("#root").innerHTML = renderToString(
-    <Provider store={rootStore}>
+    <Provider store={rootStore(defaultState)}>
       <StaticRouter location={req.url} context={context}>
         <Main />
       </StaticRouter>

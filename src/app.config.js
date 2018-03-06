@@ -1,4 +1,4 @@
 export default {
-  defaultCount: 10,
-  pageSize: 25
-}
+  defaultCount: 100,
+  pageSize: 10
+};

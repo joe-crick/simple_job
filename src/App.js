@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import JobList from "./components/JobsList/JobsList";
 import { getJobsList } from "./components/JobsList/jobs-list-actions";
-import appConfig from "app.config";
+import appConfig from "./app.config";
 import "./App.css";
 
 // Given this solution, you could probably just push the values from the main

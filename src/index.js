@@ -21,7 +21,7 @@ const Main = () => (
 
 if (typeof window !== "undefined") {
   hydrate(
-    <Provider store={rootStore}>
+    <Provider store={rootStore()}>
       <BrowserRouter>
         <Main />
       </BrowserRouter>
