@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import JobList from "./components/JobsList/JobsList";
 import { getJobsList } from "./components/JobsList/jobs-list-actions";
+import appConfig from "app.config";
 import "./App.css";
-
-const PAGE_SIZE = 25;
 
 // Given this solution, you could probably just push the values from the main
 // jobsList array into this array. However, this function creates an abstraction
@@ -15,7 +14,7 @@ const PAGE_SIZE = 25;
  * @param {*} base
  * @returns {Array<JobThumbnail>}
  */
-export const getJobPage = (jobs, base) => jobs.slice(0, base + PAGE_SIZE);
+export const getJobPage = (jobs, base) => jobs.slice(0, base + appConfig.pageSize);
 
 /**
  * @description Determines whether or not this is an actual intersection by determining
@@ -29,7 +28,7 @@ class App extends Component {
     jobSetBegin: 0
   };
 
-  componentDidMount = () => this.props.getMatchingJobListings(25);
+  componentDidMount = () => this.props.getMatchingJobListings(appConfig.defaultCount);
 
   // This is not an ideal implementation of infinite scrolling. Ideally, the
   // content should be updated through the scroll view, while not increasing
@@ -38,7 +37,7 @@ class App extends Component {
   // mobile users.
   paginateJobs = entries => {
     if (isIntersection(entries)) {
-      this.setState(state => ({ jobSetBegin: state.jobSetBegin + PAGE_SIZE }));
+      this.setState(state => ({ jobSetBegin: state.jobSetBegin + appConfig.pageSize }));
     }
   };
 

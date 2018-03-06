@@ -1,45 +1,26 @@
-import React from "react";
-import ReactDOMServer from "react-dom/server";
 import express from "express";
-import fs from "fs";
+import serverRenderer from "./renderer";
 import path from "path";
-import { JSDOM as jsdom } from "jsdom";
-
-import Html from "../src/html";
-import Main from "../src/index";
-import { jobData } from "../src/data/job-test-data";
-import StaticRouter from "react-router-dom/StaticRouter";
+import morgan from "morgan";
 
 const app = express();
-const context = {};
-const dirPrefix = "/dist";
+const router = express.Router();
+const PORT = 3000;
 
-app.use(dirPrefix, express.static(path.join(__dirname, "..", "build")));
+// root (/) should always serve our server rendered page
+const matchIndex = "^/$";
+router.use(matchIndex, serverRenderer);
+// router.use("*", serverRenderer);
 
-const filePath = path.resolve(__dirname, "..", "build", "index.html");
+router.use(express.static(path.resolve(__dirname, "..", "build")));
 
-const dom = new jsdom(fs.readFileSync(filePath, "utf8"));
-const script = dom.window.document.querySelector("script").getAttribute("src");
-const styles = dom.window.document
-  .querySelector('[rel="stylesheet"]')
-  .getAttribute("href");
+app.use(router);
+app.use(morgan("combined"));
 
-function prefix(path) {
-  return `${dirPrefix}${path}`;
-}
+app.listen(PORT, error => {
+  if (error) {
+    return console.log("An error has occurred:", error);
+  }
 
-app.get("/", (req, res) => {
-  const initialData = jobData(50);
-
-  ReactDOMServer.renderToNodeStream(
-    <Html initialData={JSON.stringify(initialData)} styles={prefix(styles)} js={prefix(script)}>
-      <StaticRouter location={req.ulr} context={context}>
-        <Main jobsList={initialData} />
-      </StaticRouter>
-    </Html>
-  ).pipe(res);
-});
-
-app.listen(3000, () => {
-  console.log("listening on port 3000...");
+  console.log(`listening on port ${PORT}...`);
 });
