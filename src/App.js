@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import JobList from "./components/JobsList/JobsList";
-import { getJobsList } from "./components/JobsList/jobs-list-actions";
 import appConfig from "./app.config";
 
 // Given this solution, you could probably just push the values from the main
@@ -27,8 +26,6 @@ class App extends Component {
     jobSetBegin: 0
   };
 
-  componentDidMount = () => this.props.getMatchingJobListings(appConfig.defaultCount);
-
   // This is not an ideal implementation of infinite scrolling. Ideally, the
   // content should be updated through the scroll view, while not increasing
   // the number of DOM elements. As elements in the DOM increase, there
@@ -52,12 +49,6 @@ class App extends Component {
   }
 }
 
-const matchDispatchToProps = dispatch => ({
-  getMatchingJobListings(query) {
-    dispatch(getJobsList(query));
-  }
-});
-
 const mapStateToProps = ({ jobsList }) => ({ jobsList });
 
-export default connect(mapStateToProps, matchDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
