@@ -20,7 +20,8 @@ const Main = () => (
 );
 
 if (typeof window !== "undefined") {
-  const initialData = JSON.parse(document.getElementById("initial-data").getAttribute("data-json"));
+  const initialData = window.__PRELOADED_STATE__;
+  delete window.__PRELOADED_STATE__;
 
   hydrate(
     <Provider store={rootStore(initialData)}>

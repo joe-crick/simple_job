@@ -27,8 +27,6 @@ export default (req, res) => {
   return context.url
     ? res.redirect(301, context.url)
     : res.send(
-        template
-          .replace("{{SSR}}", appHtml)
-          .replace("{{json}}", JSON.stringify(defaultState.jobsList))
+        template.replace("{{SSR}}", appHtml).replace("{{json}}", JSON.stringify(defaultState))
       );
 };
