@@ -14,7 +14,7 @@ describe("jobs-list-reducer", () => {
   it("should handle SET_JOBS_LIST", () => {
     const payload = jobData(1);
     const expected = { jobsList: payload };
-    const actual = rootReducer([], {
+    const actual = rootReducer(initialState, {
       type: SET_JOBS_LIST,
       payload
     });
