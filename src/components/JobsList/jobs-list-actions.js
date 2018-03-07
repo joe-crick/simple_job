@@ -5,7 +5,7 @@ import { fetchJobs } from "../../data/fetch-jobs";
 export const SET_JOBS_LIST = "SET_JOBS_LIST";
 
 // Named action methods
-export const setJobsList = cars => action(SET_JOBS_LIST, cars);
+export const setJobsList = jobs => action(SET_JOBS_LIST, jobs);
 
 // Thunks
 export const getJobsList = jobQuery => async dispatch => {

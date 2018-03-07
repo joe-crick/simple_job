@@ -14,6 +14,12 @@ const context = {};
 const filePath = path.resolve(__dirname, "..", "build", "index.html");
 const template = fs.readFileSync(filePath, "utf8");
 
+// TODO: Tests
+// TODO: Implement critical path style inlining
+// TODO: Verify server-side routing
+// TODO: Implement CSS Modules?
+// TODO: Responsive design
+
 export default (req, res) => {
   defaultState.jobsList = jobData(appConfig.defaultCount);
   const appHtml = renderToString(

@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 import renderer from "react-test-renderer";
-import JobList, { isSentinel, jobCount } from "./JobsList";
-import { jobData } from "../../data/job-test-data";
+import JobList, { isSentinel, jobCount } from "../JobsList";
+import { jobData } from "../../../data/job-test-data";
 
 const COUNT = 10;
 const jobs = jobData(COUNT);
@@ -22,7 +22,7 @@ describe("JobsList", () => {
   it("should display nothing found message when not given jobsList", () => {
     const expected = 1;
     const component = mount(<JobList />);
-    const actual = component.find(".no-jobsList").length;
+    const actual = component.find(".no-jobs").length;
     expect(actual).toEqual(expected);
   });
   it("should mark the fifth to last row of data as a sentinel", () => {
