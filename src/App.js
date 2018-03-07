@@ -21,7 +21,7 @@ export const getJobPage = (jobs, base) => jobs.slice(0, base + appConfig.pageSiz
  */
 export const isIntersection = entries => entries[0].intersectionRatio > 0;
 
-class App extends Component {
+export class App extends Component {
   state = {
     jobSetBegin: 0
   };
