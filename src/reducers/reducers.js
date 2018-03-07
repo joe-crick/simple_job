@@ -1,15 +1,16 @@
 import DEFAULT from "../state/state";
-import jobPostingReducers from "../components/JobsList/jobs-list-reducers";
+import josbListReducers from "../components/JobsList/jobs-list-reducers";
 
 const REDUX_INIT = "@@redux/INIT";
 
 const actions = {
   [REDUX_INIT]: state => state,
-  ...jobPostingReducers
+  ...josbListReducers
 };
 
 const rootReducer = (state = DEFAULT, action) => {
   const { type, payload } = action;
+  console.log("type:", type);
   if (actions.hasOwnProperty(type)) {
     return actions[type](state, payload);
   } else {
