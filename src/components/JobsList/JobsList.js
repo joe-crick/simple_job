@@ -46,7 +46,9 @@ export class JobList extends Component {
 
   viewJobDetails = event => {
     event.preventDefault();
-    alert(`You clicked: ${event.target.dataset.id}`);
+    // Set the state
+    // redirect
+    this.props.history.push(`/job-details`);
   };
 
   render = () => {

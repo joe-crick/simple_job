@@ -28,6 +28,15 @@ describe("App", () => {
     const actual = component.state("jobSetBegin");
     expect(actual).toEqual(expected);
   });
+
+  it("should do nothing if an intersection point has not been crossed", () => {
+    const expected = 0;
+    const intersectionEntries = [{ intersectionRatio: 0 }];
+    const component = shallow(<App store={store} />).dive();
+    component.instance().paginateJobs(intersectionEntries);
+    const actual = component.state("jobSetBegin");
+    expect(actual).toEqual(expected);
+  });
 });
 
 describe("getJobPage", () => {

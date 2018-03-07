@@ -1,5 +1,5 @@
 import rootReducer from "../../../reducers/reducers";
-import { SET_JOBS_LIST } from "../jobs-list-actions";
+import { SET_JOBS_LIST, SET_JOB_TO_VIEW } from "../jobs-list-actions";
 import { jobData } from "../../../data/job-test-data";
 
 describe("jobs-list-reducer", () => {
@@ -20,4 +20,15 @@ describe("jobs-list-reducer", () => {
     });
     expect(actual).toEqual(expected);
   });
+
+  it("should handle SET_JOB_TO_VIEW", () => {
+    const payload = jobData(1);
+    const expected = { jobsList: payload };
+    const actual = rootReducer(initialState, {
+      type: SET_JOB_TO_VIEW,
+      payload
+    });
+    expect(actual).toEqual(expected);
+  });
+
 });
