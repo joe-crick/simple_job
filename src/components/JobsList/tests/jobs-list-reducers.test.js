@@ -12,23 +12,20 @@ describe("jobs-list-reducer", () => {
   });
 
   it("should handle SET_JOBS_LIST", () => {
-    const payload = jobData(1);
-    const expected = { jobsList: payload };
+    const expected = jobData(1);
     const actual = rootReducer(initialState, {
       type: SET_JOBS_LIST,
-      payload
-    });
+      payload: expected
+    }).jobsList;
     expect(actual).toEqual(expected);
   });
 
   it("should handle SET_JOB_TO_VIEW", () => {
-    const payload = jobData(1);
-    const expected = { jobsList: payload };
+    const expected = "12";
     const actual = rootReducer(initialState, {
       type: SET_JOB_TO_VIEW,
-      payload
-    });
+      payload: expected
+    }).jobId;
     expect(actual).toEqual(expected);
   });
-
 });

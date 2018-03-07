@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import renderer from "react-test-renderer";
-import JobThumbnail from "./JobThumbnail";
+import JobThumbnail from "../JobThumbnail";
 
 describe("Job", () => {
   it("should render", () => {

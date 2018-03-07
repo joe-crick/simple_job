@@ -15,7 +15,6 @@ const actions = {
 // explicitly define actions for the @@redux actions provided by redux.
 const rootReducer = (state = DEFAULT, action) => {
   const { type, payload } = action;
-  console.log("type:", type);
   if (actions.hasOwnProperty(type)) {
     return actions[type](state, payload);
   } else {

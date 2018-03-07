@@ -7,7 +7,7 @@ export const SET_JOB_TO_VIEW = "SET_JOB_TO_VIEW";
 
 // Named action methods
 export const setJobsList = jobs => action(SET_JOBS_LIST, jobs);
-export const setJobToView = jobToView => action(SET_JOB_TO_VIEW, jobToView);
+export const setJobToView = jobId => action(SET_JOB_TO_VIEW, jobId);
 
 // Thunks
 export const getJobsList = jobQuery => async dispatch => {
