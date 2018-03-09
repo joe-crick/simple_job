@@ -35,14 +35,31 @@ describe("JobsList", () => {
     const actual = sentinelJob.hasClass("sentinel");
     expect(actual).toEqual(expected);
   });
-  it("should update the selected job when the user opts to view job details", () => {
-    const expected = [{ payload: 1, type: "SET_JOB_TO_VIEW" }];
-    const store = mockStore({ jobsList: jobs, jobId: 0 });
-    const mockEvent = { target: { dataset: { id: 1 } }, preventDefault: () => {} };
-    const component = shallow(<ConnectedJobList store={store} history={[]} />).dive();
-    component.instance().viewJobDetails(mockEvent);
-    const actual = store.getActions();
-    expect(actual).toEqual(expected);
+
+  describe("Job Selection", () => {
+    let store, mockEvent;
+
+    beforeEach(() => {
+      store = mockStore({ jobsList: jobs, jobId: 0 });
+      mockEvent = { target: { dataset: { id: 1 } }, preventDefault: () => {} };
+    });
+
+    it("should update the selected job when the user opts to view job details", () => {
+      const expected = [{ payload: 1, type: "SET_JOB_TO_VIEW" }];
+      const component = shallow(<ConnectedJobList store={store} history={[]} />).dive();
+      component.instance().viewJobDetails(mockEvent);
+      const actual = store.getActions();
+      expect(actual).toEqual(expected);
+    });
+
+    it("should navigate the user to the job details page when they opt to view job details", () => {
+      const expected = "/job-details";
+      const history = [];
+      const component = shallow(<ConnectedJobList store={store} history={history} />).dive();
+      component.instance().viewJobDetails(mockEvent);
+      const actual = history[0];
+      expect(actual).toEqual(expected);
+    });
   });
 });
 

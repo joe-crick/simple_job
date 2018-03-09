@@ -49,7 +49,7 @@ export class JobList extends Component {
   viewJobDetails = event => {
     event.preventDefault();
     this.props.selectJob(event.target.dataset.id);
-    this.props.history.push(`/job-details`);
+    this.props.history.push("/job-details");
   };
 
   render = () => {
