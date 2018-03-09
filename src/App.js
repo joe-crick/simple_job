@@ -12,7 +12,7 @@ import appConfig from "./app.config";
  * @param {*} base
  * @returns {Array<JobThumbnail>}
  */
-export const getJobPage = (jobs, base) => jobs.slice(0, base + appConfig.pageSize);
+export const getJobPage = (jobs, base) => (jobs ? jobs.slice(0, base + appConfig.pageSize) : []);
 
 /**
  * @description Determines whether or not this is an actual intersection by determining

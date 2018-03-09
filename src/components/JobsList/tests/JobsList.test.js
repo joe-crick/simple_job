@@ -1,7 +1,7 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
-import JobList, { isSentinel, jobCount } from "../JobsList";
+import ConnectedJobList, { JobList, isSentinel, jobCount } from "../JobsList";
 import { jobData } from "../../../data/job-test-data";
 
 const COUNT = 10;
@@ -31,6 +31,9 @@ describe("JobsList", () => {
     const firstJob = component.find(".JobThumbnail").at(jobs.length - 5);
     const actual = firstJob.hasClass("sentinel");
     expect(actual).toEqual(expected);
+  });
+  xit("should allow the user to select a job to view", () => {
+    const expected = true;
   });
 });
 

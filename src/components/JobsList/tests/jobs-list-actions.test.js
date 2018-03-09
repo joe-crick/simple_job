@@ -1,5 +1,5 @@
-import { setJobsList, getJobsList } from "../jobs-list-actions";
-import { SET_JOBS_LIST } from "../jobs-list-actions";
+import { setJobsList, getJobsList, setJobToView } from "../jobs-list-actions";
+import { SET_JOBS_LIST, SET_JOB_TO_VIEW } from "../jobs-list-actions";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
@@ -25,6 +25,16 @@ describe("actions", () => {
       payload
     };
     const actual = setJobsList(payload);
+    expect(actual).toEqual(expected);
+  });
+
+  it("should create an action to set the selected job", () => {
+    const payload = "Test";
+    const expected = {
+      type: SET_JOB_TO_VIEW,
+      payload
+    };
+    const actual = setJobToView(payload);
     expect(actual).toEqual(expected);
   });
 });

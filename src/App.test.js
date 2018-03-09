@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App, { getJobPage, isIntersection } from "./App";
+import ConnectedApp, { App, getJobPage, isIntersection } from "./App";
 import { shallow } from "enzyme";
 import { jobData } from "./data/job-test-data";
 import configureMockStore from "redux-mock-store";
@@ -14,16 +14,14 @@ describe("App", () => {
     store = mockStore({ jobsList: jobData(10) });
   });
 
-  it("renders without crashing", () => {
-    const div = document.createElement("div");
-    ReactDOM.render(<App store={store} />, div);
-    ReactDOM.unmountComponentAtNode(div);
+  it("renders without exploding", () => {
+    expect(shallow(<App />)).toBeDefined();
   });
 
   it("should increment the number of visible jobs if an intersection point has been crossed", () => {
     const expected = 10;
     const intersectionEntries = [{ intersectionRatio: 0.5 }];
-    const component = shallow(<App store={store} />).dive();
+    const component = shallow(<ConnectedApp store={store} />).dive();
     component.instance().paginateJobs(intersectionEntries);
     const actual = component.state("jobSetBegin");
     expect(actual).toEqual(expected);
@@ -32,7 +30,7 @@ describe("App", () => {
   it("should do nothing if an intersection point has not been crossed", () => {
     const expected = 0;
     const intersectionEntries = [{ intersectionRatio: 0 }];
-    const component = shallow(<App store={store} />).dive();
+    const component = shallow(<ConnectedApp store={store} />).dive();
     component.instance().paginateJobs(intersectionEntries);
     const actual = component.state("jobSetBegin");
     expect(actual).toEqual(expected);

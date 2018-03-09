@@ -10,7 +10,7 @@ const actions = {
 
 // Normal Redux practice is to return the default state when provided with an invalid action
 // However, this can give rise to an issue that is similar to the suppressed error problem
-// when code catches an error, and silently dies. Therefore, rather than merely returning default
+// when an error is caught, and silently dies. Therefore, rather than merely returning default
 // state, throw an error when the reducer gets an action it doesn't recognize. In addition, then,
 // explicitly define actions for the @@redux actions provided by redux.
 const rootReducer = (state = DEFAULT, action) => {

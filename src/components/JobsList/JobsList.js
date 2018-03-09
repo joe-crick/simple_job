@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import JobThumbnail from "../JobThumbnail/JobThumbnail";
+import { setJobToView } from "./jobs-list-actions";
+import { connect } from "react-redux";
 
 const BOTTOM_THRESHOLD = 5;
 
@@ -46,8 +48,7 @@ export class JobList extends Component {
 
   viewJobDetails = event => {
     event.preventDefault();
-    // Set the state
-    // redirect
+    this.props.selectJob(event.target.dataset.id);
     this.props.history.push(`/job-details`);
   };
 
@@ -77,4 +78,10 @@ export class JobList extends Component {
   };
 }
 
-export default JobList;
+const mapStateToProps = ({ jobsList }) => ({ jobsList });
+
+const mapDispatchToProps = dispatch => ({
+  selectJob: id => dispatch(setJobToView(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(JobList);
