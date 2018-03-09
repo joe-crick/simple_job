@@ -1,4 +1,4 @@
-import { action } from "../../actions/action-creators";
+import action from "../../actions/action-creator";
 import { fetchJobs } from "../../data/fetch-jobs";
 
 // Action names
