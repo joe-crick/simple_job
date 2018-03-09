@@ -3,6 +3,9 @@ import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
 import ConnectedJobList, { JobList, isSentinel, jobCount } from "../JobsList";
 import { jobData } from "../../../data/job-test-data";
+import configureMockStore from "redux-mock-store";
+
+const mockStore = configureMockStore();
 
 const COUNT = 10;
 const jobs = jobData(COUNT);
@@ -28,12 +31,18 @@ describe("JobsList", () => {
   it("should mark the fifth to last row of data as a sentinel", () => {
     const expected = true;
     const component = mount(<JobList jobs={jobs} />);
-    const firstJob = component.find(".JobThumbnail").at(jobs.length - 5);
-    const actual = firstJob.hasClass("sentinel");
+    const sentinelJob = component.find(".JobThumbnail").at(jobs.length - 5);
+    const actual = sentinelJob.hasClass("sentinel");
     expect(actual).toEqual(expected);
   });
-  xit("should allow the user to select a job to view", () => {
-    const expected = true;
+  it("should update the selected job when the user opts to view job details", () => {
+    const expected = [{ payload: 1, type: "SET_JOB_TO_VIEW" }];
+    const store = mockStore({ jobsList: jobs, jobId: 0 });
+    const mockEvent = { target: { dataset: { id: 1 } }, preventDefault: () => {} };
+    const component = shallow(<ConnectedJobList store={store} history={[]} />).dive();
+    component.instance().viewJobDetails(mockEvent);
+    const actual = store.getActions();
+    expect(actual).toEqual(expected);
   });
 });
 

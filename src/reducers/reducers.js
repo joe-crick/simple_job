@@ -17,9 +17,8 @@ const rootReducer = (state = DEFAULT, action) => {
   const { type, payload } = action;
   if (actions.hasOwnProperty(type)) {
     return actions[type](state, payload);
-  } else {
-    throw new Error("Action not found");
   }
+  throw new Error("Action not found");
 };
 
 export default rootReducer;

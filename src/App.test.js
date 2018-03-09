@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import ConnectedApp, { App, getJobPage, isIntersection } from "./App";
 import { shallow } from "enzyme";
 import { jobData } from "./data/job-test-data";
