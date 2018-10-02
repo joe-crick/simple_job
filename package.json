@@ -23,7 +23,7 @@
     "@storybook/react": "^3.4.3",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-react-app": "^3.1.1",
+    "babel-preset-react-app": "^5.0.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "hawk": "^7.0.7",
