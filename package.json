@@ -26,7 +26,7 @@
     "babel-preset-react-app": "^3.1.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "hawk": "^7.0.7",
+    "hawk": "7.0.7",
     "ignore-styles": "^5.0.1",
     "jsdom": "^11.10.0",
     "npm-run-all": "^4.1.2",
