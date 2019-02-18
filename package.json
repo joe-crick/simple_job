@@ -6,7 +6,7 @@
     "compression": "^1.7.2",
     "express": "^4.16.3",
     "faker": "^4.1.0",
-    "isomorphic-style-loader": "^4.0.0",
+    "isomorphic-style-loader": "^5.0.1",
     "lodash": "^4.17.10",
     "morgan": "^1.9.0",
     "react": "^16.3.2",
