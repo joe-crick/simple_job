@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "compression": "^1.7.2",
+    "compression": "^1.7.4",
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "isomorphic-style-loader": "^4.0.0",
