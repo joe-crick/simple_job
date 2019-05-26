@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "compression": "^1.7.2",
-    "express": "^4.16.3",
+    "express": "^4.17.1",
     "faker": "^4.1.0",
     "isomorphic-style-loader": "^4.0.0",
     "lodash": "^4.17.10",
